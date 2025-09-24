@@ -93,7 +93,8 @@ Use the longitudinal option to refine results.
 ## dmriprep
 
 Preprocessing of DWI using topup susceptinility induced distortions
-corrections.
+corrections. Description adapted from
+https://doi.org/10.1016/j.schres.2025.08.010.
 
 <details>
   <summary>Paper description (click me)</summary>
