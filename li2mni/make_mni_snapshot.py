@@ -56,19 +56,23 @@ def cohorte(li2mni_path, output_path, norm=False, site=False,
         dot per inch of the png created.
     """
     list_sub = [i for i in os.listdir(li2mni_path) if i.startswith('sub')]
-    print(list_sub, len(list_sub))
+    print(list_sub)
+    print(len(list_sub))
     for sub in list_sub:
-        template = f"{li2mni_path}/{sub}/ses-M03Li/li2mnianat.nii.gz"
+        template = f"{li2mni_path}/{sub}/ses-M03Li/lianat2mni.nii.gz"
+        assert os.path.isfile(template), f"file not found : {template}"
         if norm is False:
             overlay = f"{li2mni_path}/{sub}/ses-M03Li/li2mni.nii.gz"
             output = os.path.join(output_path, f"{sub}_overlay_mni")
+            assert os.path.isfile(template), f"file not found : {overlay}"
         else:
             overlay = f"{li2mni_path}/{sub}/ses-M03Li/li2mninorm.nii.gz"
+            assert os.path.isfile(template), f"file not found : {overlay}"
             output = os.path.join(output_path, f"{sub}_overlay_mni_norm")
 
         if os.path.isfile(template) and os.path.isfile(overlay)\
            and os.path.isfile(output + ".png") is False:
-            print("la")
+            print(f"Making {sub}")
             print(os.path.isfile(output))
             print(output)
             overlay_nifti(template, overlay, output, dpi=dpi)
@@ -91,8 +95,9 @@ def cohorte(li2mni_path, output_path, norm=False, site=False,
                                                      f"_site-{site}_over"))
             if os.path.isfile(file_to_check) is False:
                 shutil.copy2(os.path.join(path, png), file_to_check)
+                print('copy done')
             liste_site.append(site)
-        print('cp done')
+
         if pdf:
             for site in set(liste_site):
                 images = []

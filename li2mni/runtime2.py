@@ -26,7 +26,7 @@ def run(datadir, outdir, phdir, participant_file, name="li2mninorm",
     Parameters
     ----------
     datadir: str
-        path to the BIDS derivatives directory.
+        path to the li2mni derivatives directory.
     outdir: str
         path to the BIDS derivatives directory.
     phdir: str
@@ -111,9 +111,8 @@ def run(datadir, outdir, phdir, participant_file, name="li2mninorm",
             outdir=sub_outdirs,
             norm="norm",
             ref_value=ph_vals,
-            hopla_name_replace=True,
-            hopla_iterative_kwargs=["li2mni-file", "ref-value", "outdir"],
-            hopla_optional=["li2mni-file", "ref_value", "mask_file",
+            hopla_iterative_kwargs=["li2mni_file", "ref_value", "outdir"],
+            hopla_optional=["li2mni_file", "ref_value", "mask_file",
                             "outdir", "norm"],
             hopla_cpus=njobs,
             hopla_logfile=logfile,
